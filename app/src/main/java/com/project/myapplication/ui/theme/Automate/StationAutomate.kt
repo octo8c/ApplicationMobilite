@@ -27,9 +27,18 @@ class StationAutomate(val graph:Graph){
         }
 
     }
-    private fun isInGraph(str:String,ind:Int):Boolean {
-
+    private fun isInGraph(str:String,ind:Int,auto:Automate):Boolean {
+        if(ind+1==str.length){
+            return auto.isFinal()
+        }else{
+            var autoTransition = auto.getAutomateTransition(str.get(ind))
+            if(autoTransition==null){
+                return false
+            }else {
+                return isInGraph(str, ind+1, autoTransition)
+            }
+        }
     }
-    fun isStation(str:String):Boolean = isInGraph(str, 0)
+    fun isStation(str:String):Boolean = if (str.equals("")) false else isInGraph(str, 0,start)
 
 }

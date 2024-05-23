@@ -11,5 +11,6 @@ class Automate(state:Boolean ){
     fun addTransition(c:Char,automate:Automate){
         mapTransition.put(c,automate)
     }
+    fun isFinal():Boolean = final
 
 }
